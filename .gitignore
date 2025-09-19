@@ -1,7 +1,8 @@
 .DS_Store
 
-# Virtual Environment
+# Virtual Environments
 venv
+octofit-tracker/backend/venv/
 
 # octofit tracker app
 # octfit-tracker
@@ -31,3 +32,11 @@ yarn-error.log*
 # Python files
 *.pyc
 __pycache__/
+
+# Django artifacts
+*.sqlite3
+staticfiles/
+
+# Mongo artifacts (if any dumps)
+dump/
+
