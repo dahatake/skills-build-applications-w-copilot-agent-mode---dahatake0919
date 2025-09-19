@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiEndpoints } from '../App';
+import Section from './Section';
 
 export default function Workouts() {
   const [items, setItems] = useState([]);
@@ -18,19 +19,21 @@ export default function Workouts() {
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, [url]);
-  if(loading) return <div className="p-3">Loading workouts...</div>;
-  if(error) return <div className="alert alert-danger m-3">{error}</div>;
-  return (
-    <div className="container py-4">
-      <h2>Workouts</h2>
-      <div className="list-group mt-3">
-        {items.map(w => (
-          <div key={w.id} className="list-group-item">
-            <h6 className="mb-1">{w.name}</h6>
-            <p className="mb-1 small text-muted">{w.description}</p>
-          </div>
-        ))}
-      </div>
+  const body = (
+    <div className="table-responsive">
+      <table className="table table-sm mb-0 table-striped">
+        <thead className="table-light"><tr><th>ID</th><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+          {items.map(w => (
+            <tr key={w.id}><td>{w.id}</td><td>{w.name}</td><td className="text-muted small">{w.description}</td></tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  );
+  return (
+    <Section title="Workouts" endpoint={url}>
+      {loading ? <div className="p-4 loading-placeholder">Loading...</div> : error ? <div className="p-4 text-danger">{error}</div> : body}
+    </Section>
   );
 }

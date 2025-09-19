@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiEndpoints } from '../App';
+import Section from './Section';
 
 export default function Teams() {
   const [teams, setTeams] = useState([]);
@@ -18,14 +19,19 @@ export default function Teams() {
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, [url]);
-  if(loading) return <div className="p-3">Loading teams...</div>;
-  if(error) return <div className="alert alert-danger m-3">{error}</div>;
-  return (
-    <div className="container py-4">
-      <h2>Teams</h2>
-      <ul className="list-group mt-3">
-        {teams.map(t => <li key={t.id} className="list-group-item d-flex justify-content-between align-items-center"><span>{t.name}</span><span className="text-muted small">{t.description}</span></li>)}
-      </ul>
+  const body = (
+    <div className="table-responsive">
+      <table className="table table-sm mb-0 table-striped">
+        <thead className="table-light"><tr><th>ID</th><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+          {teams.map(t => <tr key={t.id}><td>{t.id}</td><td>{t.name}</td><td className="text-muted small">{t.description}</td></tr>)}
+        </tbody>
+      </table>
     </div>
+  );
+  return (
+    <Section title="Teams" endpoint={url}>
+      {loading ? <div className="p-4 loading-placeholder">Loading...</div> : error ? <div className="p-4 text-danger">{error}</div> : body}
+    </Section>
   );
 }

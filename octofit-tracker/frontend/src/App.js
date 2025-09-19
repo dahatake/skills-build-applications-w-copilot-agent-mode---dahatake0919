@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
+import './App.css';
 import Activities from './components/Activities';
 import Leaderboard from './components/Leaderboard';
 import Teams from './components/Teams';
@@ -22,9 +23,16 @@ export const apiEndpoints = {
 function Home() {
   return (
     <div className="container py-4">
-      <h1 className="mb-3">OctoFit Tracker</h1>
-      <p className="lead">Select a section from the navigation.</p>
-      <pre className="bg-light p-3 small border">API Base: {base}</pre>
+      <div className="card app-section-card">
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h1 className="h4 m-0">OctoFit Tracker</h1>
+          <span className="badge bg-light text-dark api-endpoint-badge">API BASE</span>
+        </div>
+        <div className="card-body">
+          <p className="lead">Select a section from the navigation.</p>
+          <code className="small d-block p-2 bg-light border rounded">{base}</code>
+        </div>
+      </div>
     </div>
   );
 }
@@ -49,14 +57,16 @@ export default function App() {
           </div>
         </div>
       </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/activities" element={<Activities />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/teams" element={<Teams />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/workouts" element={<Workouts />} />
-      </Routes>
+      <main className="pb-5">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/workouts" element={<Workouts />} />
+        </Routes>
+      </main>
     </>
   );
 }

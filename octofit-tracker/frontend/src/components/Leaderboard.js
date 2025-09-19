@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiEndpoints } from '../App';
+import Section from './Section';
 
 export default function Leaderboard() {
   const [rows, setRows] = useState([]);
@@ -18,17 +19,19 @@ export default function Leaderboard() {
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, [url]);
-  if(loading) return <div className="p-3">Loading leaderboard...</div>;
-  if(error) return <div className="alert alert-danger m-3">{error}</div>;
-  return (
-    <div className="container py-4">
-      <h2>Leaderboard</h2>
-      <table className="table table-bordered table-sm mt-3">
-        <thead><tr><th>Rank</th><th>Team</th><th>Total Points</th></tr></thead>
+  const body = (
+    <div className="table-responsive">
+      <table className="table table-sm table-hover mb-0">
+        <thead className="table-light"><tr><th>Rank</th><th>Team</th><th>Total Points</th></tr></thead>
         <tbody>
           {rows.map(r => (<tr key={r.id}><td>{r.rank}</td><td>{r.team?.name}</td><td>{r.total_points}</td></tr>))}
         </tbody>
       </table>
     </div>
+  );
+  return (
+    <Section title="Leaderboard" endpoint={url}>
+      {loading ? <div className="p-4 loading-placeholder">Loading...</div> : error ? <div className="p-4 text-danger">{error}</div> : body}
+    </Section>
   );
 }
