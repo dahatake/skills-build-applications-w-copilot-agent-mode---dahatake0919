@@ -1,20 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-function Home() {
-  return <div className="container py-4"><h1 className="mb-3">OctoFit Tracker Frontend</h1><p>React + Bootstrap initialized.</p></div>;
-}
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <App />
     </Router>
   </React.StrictMode>
 );
