@@ -42,7 +42,10 @@ export default function App() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">OctoFit</NavLink>
+          <NavLink className="navbar-brand d-flex align-items-center" to="/">
+            <img src="/logo.png" className="brand-logo me-2" alt="OctoFit" />
+            <span>OctoFit</span>
+          </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>

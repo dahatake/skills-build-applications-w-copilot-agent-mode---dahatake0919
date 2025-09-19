@@ -1,13 +1,46 @@
 /* Global styling & Bootstrap light customization */
-body { background-color: #f7f9fb; }
-.navbar-brand { font-weight: 600; letter-spacing: .5px; }
-.app-section-card { box-shadow: 0 2px 4px rgba(0,0,0,.08); border-radius: .5rem; }
-.app-section-card .card-header { background: linear-gradient(90deg,#0d6efd,#0b5ed7); color:#fff; }
-table thead th { white-space: nowrap; }
-.table-sm td, .table-sm th { vertical-align: middle; }
-.loading-placeholder { animation: pulse 1.2s ease-in-out infinite; }
+:root {
+  --primary: #0d6efd;
+  --primary-dark: #0b5ed7;
+  --accent: #ff6b6b;
+  --bg: #f3f6fb;
+  --muted: #6c757d;
+  --table-head: #e9f2ff;
+  --card-bg: #ffffff;
+}
+
+body { background-color: var(--bg); color: #0f1724; }
+
+.navbar {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+.navbar .nav-link { color: rgba(255,255,255,0.9); }
+.navbar .nav-link.active { font-weight: 600; color: #fff; }
+.navbar-brand { font-weight: 700; letter-spacing: .6px; color: #fff; display:flex; align-items:center; gap:.5rem }
+.navbar-brand img { height:32px; width:32px; object-fit:contain; border-radius:6px; }
+
+.app-section-card { box-shadow: 0 6px 18px rgba(12,38,63,0.06); border-radius: .6rem; background: var(--card-bg); }
+.app-section-card .card-header { background: linear-gradient(90deg,var(--primary),var(--primary-dark)); color:#fff; }
+
+h1,h2,h3,h4,h5 { color: #07203a; }
+
+.table thead th { background: var(--table-head); color: #07203a; }
+.table tbody tr:hover { background: rgba(13,110,253,0.04); }
+.table-responsive { padding: 1rem; }
+
+.btn-primary, .btn-primary:focus, .btn-primary:hover { background: var(--primary); border-color: var(--primary-dark); }
+.btn-outline-light { color: #fff; border-color: rgba(255,255,255,0.45); }
+
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); text-decoration:underline; }
+
+.api-endpoint-badge { font-size:.65rem; letter-spacing:.5px; background:rgba(255,255,255,0.12); padding:.2rem .5rem; border-radius:.4rem }
+
+.loading-placeholder { animation: pulse 1.2s ease-in-out infinite; color:var(--muted); padding:1rem; }
 @keyframes pulse { 0%{opacity:.45} 50%{opacity:1} 100%{opacity:.45} }
-.api-endpoint-badge { font-size:.65rem; letter-spacing:.5px; }
-.card + .card { margin-top:1.25rem; }
-.modal-header { background:#0d6efd; color:#fff; }
+
+.modal-header { background: linear-gradient(90deg,var(--primary),var(--primary-dark)); color:#fff; }
 .form-label { font-weight:500; }
+
+/* Favicon/logo spacing */
+.brand-logo { height:32px; width:32px; object-fit:contain; border-radius:6px; }
